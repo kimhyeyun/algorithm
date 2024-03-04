@@ -34,13 +34,13 @@ public class Main {
 		}
 
 		answer = Integer.MAX_VALUE;
-		BFS();
+		System.out.println(BFS());
 
-		answer = answer == Integer.MAX_VALUE ? -1 : answer;
-		System.out.println(answer);
+		// answer = answer == Integer.MAX_VALUE ? -1 : answer;
+		// System.out.println(answer);
 	}
 
-	private static void BFS() {
+	private static int BFS() {
 		Queue<int[]> q = new LinkedList<>();
 		boolean[][][] isVisited = new boolean[N][M][2];
 
@@ -50,17 +50,17 @@ public class Main {
 		while (!q.isEmpty()) {
 			int[] cur = q.poll();
 
-			// if (cur[0] == end[0] && cur[1] == end[1]) return cur[3];
+			if (cur[0] == end[0] && cur[1] == end[1]) return cur[3];
 
 			for (int d = 0; d < 4; d++) {
 				int nx = cur[0] + dx[d];
 				int ny = cur[1] + dy[d];
 
 				if (nx < 0 || ny < 0 || N <= nx || M <= ny) continue;
-				if (nx == end[0] && ny == end[1]) {
-					answer = Math.min(answer, cur[3] + 1);
-					continue;
-				}
+				// if (nx == end[0] && ny == end[1]) {
+				// 	answer = Math.min(answer, cur[3] + 1);
+				// 	continue;
+				// }
 
 				if (map[nx][ny] == 1) {
 					if (cur[2] == 0 && !isVisited[nx][ny][1]) {
@@ -73,5 +73,6 @@ public class Main {
 				}
 			}
 		}
+		return -1;
 	}
 }
